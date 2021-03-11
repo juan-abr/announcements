@@ -1,0 +1,9 @@
+{% extends 'base_submenu.html' %}
+
+hello world
+
+<ul>
+    {% for event in latest %}
+        <li>{{ event.event_date }}: {{ event.title }}</li>
+    {% endfor %}
+</ul>
