@@ -1,9 +1,11 @@
-{% extends 'base_submenu.html' %}
+{% extends 'base.html' %}
 
-hello world
-
-<ul>
-    {% for event in latest %}
-        <li>{{ event.event_date }}: {{ event.title }}</li>
-    {% endfor %}
-</ul>
+{% block content %}
+    hello world
+    {% comment %}<ul>
+        {% for object in latest %}
+            hello world
+            <li>{{ object.event_date }}: {{ object.title }}</li>
+        {% endfor %}
+    </ul>{% endcomment %}
+{% endblock content %}
