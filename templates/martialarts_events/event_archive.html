@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    hello world
-    {% comment %}<ul>
-        {% for object in latest %}
-            hello world
-            <li>{{ object.event_date }}: {{ object.title }}</li>
+    <ul>
+        {% for event in latest %}
+            <li>{{ event.event_date }}: {{ event.title }}</li>
         {% endfor %}
-    </ul>{% endcomment %}
+    </ul>
 {% endblock content %}
