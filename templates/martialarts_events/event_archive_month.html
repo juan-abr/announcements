@@ -4,11 +4,11 @@
 
 {% block content %}
 
-    <h1>{{ event.event_date|date:"F y" }}</h1>
+    <h1>Schedule for {{ month|date:"F, Y" }}</h1>
 
     {% for event in object_list %}
-        {{ event.event_date|date:"l, F j, y" }}:<br>
-        {{ event.title }}<br>
+        <b>{{ event.event_date|date:"l, F j" }}:<br>
+        {{ event.title }}</b><br>
         {{ event.desc }}<br><br>
     {% endfor %}
 
