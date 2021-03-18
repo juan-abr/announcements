@@ -7,9 +7,11 @@
     <h1>Schedule for {{ month|date:"F, Y" }}</h1>
 
     {% for event in object_list %}
-        <b>{{ event.event_date|date:"l, F j" }}:<br>
-        {{ event.title }}</b><br>
-        {{ event.desc }}<br><br>
+        {% if event_date != '' %}
+            <b>{{ event.event_date|date:"l, F j" }}:<br>
+            {{ event.title }}</b><br>
+            {{ event.desc }}<br><br>
+        {% endif %}
     {% endfor %}
 
     <p>
