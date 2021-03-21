@@ -4,13 +4,13 @@
 
 {% block content %}
 
-    <h1>Schedule for {{ month|date:"F, Y" }}</h1>
+    <h1>Newsletter for {{ month|date:"F, Y" }}</h1>
 
-    {% for event in object_list %}
-        {% if event_date != '' %}
-            <b>{{ event.event_date|date:"l, F j" }}:<br>
-            {{ event.announcement }}</b><br>
-            {{ event.announcement.desc }}<br><br>
+    {% for announcement in object_list %}
+        {% if pub_date != '' %}
+            <b>{{ announcement.pub_date|date:"l, F j" }}:<br>
+            {{ announcement.title }}</b><br>
+            {{ announcement.desc }}<br><br>
         {% endif %}
     {% endfor %}
 

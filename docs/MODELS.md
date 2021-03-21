@@ -27,12 +27,20 @@ Announcement model
     publication  date (pub_date) (Date Field) (day event is published) (for newsletter)
     recurring (boolean field) (True or False) (If recurring, repeat event each week)
 
-    event date (date field) (day of the event) (True if blank)
+    ~~event date (date field) (day of the event) (True if blank)~~
 
-        
+Attendee model (later?????)
+    name (amy bergman, joe smith, Pitbull, etc.) (char field) (user authentication???)
+    number of people (int field)
+
 Event model
     announcement (one to one field) (Announcement)
     event_date (date field)
+    attendee (many to many field)
+
+    (sign up button???) (later??????)
+
+
 
 
 
