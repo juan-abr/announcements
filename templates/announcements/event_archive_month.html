@@ -10,7 +10,9 @@
         {% if event_date != '' %}
             <b>{{ event.event_date|date:"l, F j" }}:<br>
             {{ event.announcement }}</b><br>
-            {{ event.announcement.desc }}<br><br>
+            {{ event.announcement.desc }}
+
+            <a href="{#% url event_add_attendance %#}">Sign-Up!</a><br><br>
         {% endif %}
     {% endfor %}
 

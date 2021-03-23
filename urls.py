@@ -6,6 +6,8 @@ from datetime import date
 from .views import *
 from .models import Announcement
 
+app_name = 'announcements'
+
 urlpatterns = [
     path('', AnnouncementMonthView.as_view(), name="show_announcements"),
     path('events/', EventMonthView.as_view(), name="show_events"),
