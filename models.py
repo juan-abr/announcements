@@ -12,14 +12,14 @@ class Announcement(models.Model):
     #event_date  = models.DateField(blank=True, null=True)             # Day of the Event
 
     def __str__(self):
-        return self.title
+        return '%s %s' % (str(self.pub_date.strftime("%Y-%m-%d")), self.title)
 
 class Event(models.Model):
     announcement    = models.OneToOneField(Announcement, on_delete=models.CASCADE)
     event_date      = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return self.announcement
+        return '%s' % self.announcement
 
 class EventRegistration(models.Model):
     event   = models.ForeignKey(Event, on_delete=models.CASCADE)
