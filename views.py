@@ -11,6 +11,7 @@ from django.views.generic.dates import ArchiveIndexView, MonthArchiveView
 from django.views.generic import CreateView
 
 from .models import Announcement, Event, EventRegistration
+from .forms import EventRegistrationForm
 
 # Create your views here.
 # class EventArchiveIndexView(ArchiveIndexView):
@@ -53,17 +54,21 @@ class EventMonthView(LoginRequiredMixin, MonthArchiveView):
     date_field = 'event_date'
     allow_future = True
 
-def event_add_attendance(request, pk):
-    this_event = Events.objects.get(pk=pk)
-    this_event.add_user_to_list_of_attendees(user = request.user)
-    return redirect('announcements:event_month', pk=pk)
+# def event_add_attendance(request, pk):
+#     this_event = Events.objects.get(pk=pk)
+#     this_event.add_user_to_list_of_attendees(user = request.user)
+#     return redirect('announcements:event_month', pk=pk)
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
-# class EventRegistrationView(CreateView):
-#     form_class = EventRegistrationForm
-#     success_url = 
-#     template_name =
+class EventRegistrationView(CreateView):
+    form_class = EventRegistrationForm
+    success_url = reverse_lazy('event_registration')
+    template_name = 'announcements/event_registration.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)

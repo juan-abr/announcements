@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from .models import EventRegistration
 
 class EventRegistrationForm(ModelForm):
@@ -7,3 +7,6 @@ class EventRegistrationForm(ModelForm):
     class Meta:
         model = EventRegistration
         fields = '__all__'
+        widget = {
+            'user': TextInput(attrs={'readonly': 'readonly'})
+        }

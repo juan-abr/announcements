@@ -11,6 +11,7 @@ app_name = 'announcements'
 urlpatterns = [
     path('', AnnouncementMonthView.as_view(), name="show_announcements"),
     path('events/', EventMonthView.as_view(), name="show_events"),
+    path('events/registration/', EventRegistrationView.as_view(), name="event_registration"),
 
     path('list/', ListView.as_view(model=Announcement), name='announcement_list'),
     path('archive/', ArchiveIndexView.as_view(model=Announcement, date_field="announcement_date", allow_future=True), name="announcement_archive"),
