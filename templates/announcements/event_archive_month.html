@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'base_announcements.html' %}
 
-{% block title %}{% endblock title %}
+{% block title %}Events in {{ month|date:"F, Y" }}{% endblock title %}
 
 {% block content %}
 
-    <h1>Schedule for {{ month|date:"F, Y" }}</h1>
+    <h1>Events in {{ month|date:"F, Y" }}</h1>
 
     {% for event in object_list %}
         {% if event_date != '' %}
