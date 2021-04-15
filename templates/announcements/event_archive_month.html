@@ -12,7 +12,7 @@
             {{ event.announcement }}</b><br>
             {{ event.announcement.desc }}
 
-            <a href="{#% url event_registration %#}registration/">Sign Up!</a><br><br>
+            <a href="{#% url event_registration_create %#}registration/add/{{ event.pk }}">Sign Up!</a><br><br>
         {% endif %}
     {% endfor %}
 

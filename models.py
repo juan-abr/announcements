@@ -21,13 +21,13 @@ class Event(models.Model):
     def __str__(self):
         return '%s' % self.announcement
 
+    def add_user_to_list_of_attendees(self, user):
+        registration = EventRegistration.objects.create(user = user, event = self)
+
 class EventRegistration(models.Model):
     event   = models.ForeignKey(Event, on_delete=models.CASCADE)
     user    = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Atendee')
-    number  = models.IntegerField(verbose_name='Number of Guests')
+    number  = models.IntegerField(verbose_name='Number of Guests', default=1)
 
     def __str__(self):
-        return self.user.last_name + ", " + self.user.first_name
-
-def add_user_to_list_of_attendees(self, user):
-    registration = EventRegistration.objects.create(user = user, event = self)
+        return self.user.username

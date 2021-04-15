@@ -7,6 +7,3 @@ class EventRegistrationForm(ModelForm):
     class Meta:
         model = EventRegistration
         fields = '__all__'
-        widget = {
-            'user': TextInput(attrs={'readonly': 'readonly'})
-        }

@@ -4,14 +4,16 @@ from django.views.generic import ListView
 from datetime import date
 
 from .views import *
+# from . import views
 from .models import Announcement
 
-app_name = 'announcements'
+# app_name = 'announcements'
 
 urlpatterns = [
     path('', AnnouncementMonthView.as_view(), name="show_announcements"),
     path('events/', EventMonthView.as_view(), name="show_events"),
-    path('events/registration/', EventRegistrationView.as_view(), name="event_registration"),
+    path('events/registration/edit/<int:pk>', EventRegistrationView.as_view(), name='event_registration_update'),
+    path('events/registration/add/<int:pk>', event_add_attendance, name = 'event_registration_create'),
 
     path('list/', ListView.as_view(model=Announcement), name='announcement_list'),
     path('archive/', ArchiveIndexView.as_view(model=Announcement, date_field="announcement_date", allow_future=True), name="announcement_archive"),
