@@ -14,6 +14,10 @@ class Announcement(models.Model):
     def __str__(self):
         return '%s %s' % (str(self.pub_date.strftime("%Y-%m-%d")), self.title)
 
+    @property
+    def media(self):
+        return self.media_set.all()
+
 class Event(models.Model):
     announcement    = models.OneToOneField(Announcement, on_delete=models.CASCADE)
     event_date      = models.DateField(blank=True, null=True)
@@ -26,8 +30,14 @@ class Event(models.Model):
 
 class EventRegistration(models.Model):
     event   = models.ForeignKey(Event, on_delete=models.CASCADE)
-    user    = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Atendee')
+    user    = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Attendee')
     number  = models.IntegerField(verbose_name='Number of Guests', default=1)
 
     def __str__(self):
         return self.user.username
+
+class Media(models.Model):
+    file_name       = models.CharField(max_length = 50)
+    announcement    = models.ForeignKey(Announcement, on_delete=models.CASCADE)
+    desc            = models.TextField(blank = True)
+    position        = models.IntegerField(blank=True)

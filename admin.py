@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Announcement, Event, EventRegistration
+from .models import Announcement, Event, EventRegistration, Media
 
 # Register your models here.
 @admin.register(Announcement)
@@ -16,7 +16,15 @@ class EventAdmin(admin.ModelAdmin):
     ordering     = ('-event_date',)
     # search_fields = ('announcement',)
     list_filter = ('event_date',)
+    
+@admin.register(EventRegistration)
+class EventRegistrationAdmin(admin.ModelAdmin):
+    list_display = ('event', 'user')
+
+@admin.register(Media)
+class MediaAdmin(admin.ModelAdmin):
+    list_display = ('file_name', 'announcement')
 
 # admin.site.register(Announcement)
 # admin.site.register(Event)
-admin.site.register(EventRegistration)
+# admin.site.register(EventRegistration)

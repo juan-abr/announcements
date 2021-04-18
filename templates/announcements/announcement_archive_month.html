@@ -10,7 +10,10 @@
         {% if pub_date != '' %}
             <b>{{ announcement.pub_date|date:"l, F j" }}:<br>
             {{ announcement.title }}</b><br>
-            {{ announcement.desc }}<br><br>
+            {{ announcement.desc }}
+            {% for media in announcement.media %}
+                <a href="{% static media.file_name %}" >{{ media.file_name }}</a>
+            {% endfor %}<br><br>
         {% endif %}
     {% endfor %}
 
