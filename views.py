@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.utils.timezone import now
 from django.urls import reverse_lazy
@@ -54,24 +54,28 @@ class EventMonthView(LoginRequiredMixin, MonthArchiveView):
     allow_future = True
 
 # def event_add_attendance(request, *args, **kwargs):
-def event_add_attendance(request, pk):
+def event_add_attendance(request, event_pk):
     # pk = kwargs.get('pk')
-    this_event = Event.objects.get(pk=pk)
+    this_event = Event.objects.get(pk=event_pk)
     this_event.add_user_to_list_of_attendees(user = request.user)
-    return redirect('event_registration_update', pk=pk)
+    # new_object = EventRegistration.objects.get(pk=pk)
+    registration = get_object_or_404(EventRegistration, pk)
+    # return redirect('announcements:event_registration_update', pk=pk)
+    # return redirect('announcements:show_events')
+    return redirect(registration)
     # return redirect('event_registration_update.html', pk=pk)
 
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('announcements:login')
     template_name = 'registration/signup.html'
 
 class EventRegistrationView(UpdateView):
     model = EventRegistration
     fields = ['number']
     # form_class = EventRegistrationForm
-    success_url = reverse_lazy('show_events')
+    success_url = reverse_lazy('announcements:show_events')
     template_name_suffix = '_update'
 
     # def form_valid(self, form):

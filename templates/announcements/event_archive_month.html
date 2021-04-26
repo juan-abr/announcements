@@ -1,4 +1,5 @@
 {% extends 'base_announcements.html' %}
+{% load static %}
 
 {% block title %}Events in {{ month|date:"F, Y" }}{% endblock title %}
 
@@ -9,8 +10,11 @@
     {% for event in object_list %}
         {% if event_date != '' %}
             <b>{{ event.event_date|date:"l, F j" }}:<br>
-            {{ event.announcement }}</b><br>
+            {{ event.announcement.title }}</b><br>
             {{ event.announcement.desc }}
+            {% for media in event.announcement.media %}
+                <a href="{% static media.file_name %}">{{ media.file_name }}</a>
+            {% endfor %}<br><br>
 
             <a href="{#% url event_registration_create %#}registration/add/{{ event.pk }}">Sign Up!</a><br><br>
         {% endif %}

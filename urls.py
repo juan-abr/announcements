@@ -7,7 +7,7 @@ from .views import *
 # from . import views
 from .models import Announcement
 
-# app_name = 'announcements'
+app_name = 'announcements'
 
 urlpatterns = [
     path('', AnnouncementMonthView.as_view(), name="show_announcements"),

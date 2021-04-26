@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from django.urls import reverse
+from django.urls import reverse
 
 # Create your models here.
 class Announcement(models.Model):
@@ -25,6 +25,9 @@ class Event(models.Model):
     def __str__(self):
         return '%s' % self.announcement
 
+    def get_absolute_url(self):
+        return reverse('announcements:show_event')
+
     def add_user_to_list_of_attendees(self, user):
         registration = EventRegistration.objects.create(user = user, event = self)
 
@@ -35,6 +38,9 @@ class EventRegistration(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse('announcements:event_registration_update', args=[self.pk])
 
 class Media(models.Model):
     file_name       = models.CharField(max_length = 50)
