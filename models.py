@@ -25,16 +25,18 @@ class Event(models.Model):
     def __str__(self):
         return '%s' % self.announcement
 
-    def get_absolute_url(self):
-        return reverse('announcements:show_event')
-
     def add_user_to_list_of_attendees(self, user):
         registration = EventRegistration.objects.create(user = user, event = self)
+        return registration.pk
 
 class EventRegistration(models.Model):
     event   = models.ForeignKey(Event, on_delete=models.CASCADE)
     user    = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Attendee')
     number  = models.IntegerField(verbose_name='Number of Guests', default=1)
+    note   = models.TextField(blank = True)
+
+    class Meta:
+        unique_together = ['event', 'user']
 
     def __str__(self):
         return self.user.username
@@ -47,3 +49,6 @@ class Media(models.Model):
     announcement    = models.ForeignKey(Announcement, on_delete=models.CASCADE)
     desc            = models.TextField(blank = True)
     position        = models.IntegerField(blank=True)
+
+    def __str__(self):
+        return self.file_name

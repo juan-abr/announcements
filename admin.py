@@ -20,6 +20,7 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(EventRegistration)
 class EventRegistrationAdmin(admin.ModelAdmin):
     list_display = ('event', 'user')
+    list_filter = ('event', 'user')
 
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
