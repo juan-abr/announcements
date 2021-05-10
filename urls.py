@@ -18,6 +18,8 @@ urlpatterns = [
     path('list/', ListView.as_view(model=Announcement), name='announcement_list'),
     path('archive/', ArchiveIndexView.as_view(model=Announcement, date_field="announcement_date", allow_future=True), name="announcement_archive"),
 
+    # NEEDS TO BE FIXED!!!!
+    
     # Example: /2012/08/
     path('<int:year>/<int:month>/', AnnouncementMonthView.as_view(month_format='%m'), name="announcement_month_numeric"),
     # Example: /2012/aug/

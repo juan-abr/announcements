@@ -12,7 +12,7 @@ class Announcement(models.Model):
     #event_date  = models.DateField(blank=True, null=True)             # Day of the Event
 
     def __str__(self):
-        return '%s %s' % (str(self.pub_date.strftime("%Y-%m-%d")), self.title)
+        return '%s announced %s' % (self.title, str(self.pub_date.strftime("%Y-%m-%d")))
 
     @property
     def media(self):
