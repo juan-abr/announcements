@@ -5,7 +5,10 @@ from django.urls import reverse
 # Create your models here.
 class Announcement(models.Model):
     title       = models.CharField(max_length = 100)
-    desc        = models.TextField(blank=True)
+    desc        = models.TextField(
+        help_text="IMPORTANT: Google will use this as a preview snippet in the results of search.",
+        blank=True
+    )
     pub_date    = models.DateField()             # Day Event is Posted (for newsletter)
     recurring   = models.BooleanField()          # If true, the event repeats every week
 

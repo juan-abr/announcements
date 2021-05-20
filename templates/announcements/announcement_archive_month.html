@@ -1,7 +1,11 @@
 {% extends 'base_announcements.html' %}
 {% load static %}
 
-{% block title %}Newsletter for {{ month|date:"F, Y" }}{% endblock title %}
+{% block title %}Newsletter for {{ month|date:"F, Y" }} - {% endblock title %}
+
+{% block og_title %}Newsletter for {{ month|date:"F, Y" }} - {% endblock og_title %}
+{% block description %}{% endblock description %}
+{% block twitter_card %}{% endblock twitter_card %}
 
 {% block content %}
 
