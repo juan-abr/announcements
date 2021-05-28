@@ -4,8 +4,9 @@
 {% block title %}Newsletter for {{ month|date:"F, Y" }} - {% endblock title %}
 
 {% block og_title %}Newsletter for {{ month|date:"F, Y" }} - {% endblock og_title %}
-{% block description %}{% endblock description %}
-{% block twitter_card %}{% endblock twitter_card %}
+{% block description %}Central Maryland Martial Arts newsletter for the month of {{ month|date:"F" }} in the year {{ month|date:"Y" }}.{% endblock description %}
+{% block og_url %}{% endblock og_url %}
+{% block twitter_card %}Central Maryland Martial Arts newsletter for the month of {{ month|date:"F" }} in the year {{ month|date:"Y" }}.{% endblock twitter_card %}
 
 {% block content %}
 
