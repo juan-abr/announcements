@@ -5,7 +5,7 @@
 
 {% block og_title %}Events in {{ month|date:"F, Y" }} - {% endblock og_title %}
 {% block description %}Central Maryland Martial Arts events for the month of {{ month|date:"F" }} in the year {{ month|date:"Y" }}.{% endblock description %}
-{% block og_url %}{% endblock og_url %}
+{% block og_url %}{% url 'announcements:show_events' %}{% endblock og_url %}
 {% block twitter_card %}Central Maryland Martial Arts events for the month of {{ month|date:"F" }} in the year {{ month|date:"Y" }}.{% endblock twitter_card %}
 
 {% block content %}
@@ -21,7 +21,7 @@
                 <a href="{% static media.file_name %}">{{ media.file_name }}</a>
             {% endfor %}<br><br>
 
-            <a href="{#% url event_registration_create %#}registration/add/{{ event.pk }}">Sign Up!</a><br><br>
+            <a href="{{ event.get_absolute_url }}">Sign Up!</a><br><br>
         {% endif %}
     {% endfor %}
 

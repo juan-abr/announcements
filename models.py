@@ -32,6 +32,10 @@ class Event(models.Model):
         registration = EventRegistration.objects.create(user = user, event = self)
         return registration.pk
 
+    def get_absolute_url(self):
+        # return reverse('announcements:event_registration_create', args=[self.event])
+        return reverse('announcements:event_registration_create', kwargs={'pk': self.pk})
+
 class EventRegistration(models.Model):
     event   = models.ForeignKey(Event, on_delete=models.CASCADE)
     user    = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Attendee')
@@ -43,9 +47,6 @@ class EventRegistration(models.Model):
 
     def __str__(self):
         return self.user.username
-
-    def get_absolute_url(self):
-        return reverse('announcements:event_registration_update', args=[self.pk])
 
 class Media(models.Model):
     file_name       = models.CharField(max_length = 50)
